@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://saasifycalc.com/sitemap.xml
+Sitemap: https://synthetic-sage.github.io/saasify-calc/sitemap.xml
