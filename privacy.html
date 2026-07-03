@@ -1,42 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy | SaaSifyCalc</title>
-    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF5500', // Safety Orange
+                        surface: '#FFFFFF', // Pure White
+                        background: '#F4F1EA', // Parchment
+                        textMain: '#09090B', // Pure Black
+                        textMuted: '#52525B' // Dark Gray
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        mono: ['"Space Mono"', 'monospace'],
+                    },
+                    boxShadow: {
+                        'hard': '6px 6px 0px 0px rgba(9, 9, 11, 1)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+    </style>
 </head>
-<body>
-    <div class="container">
-        <nav>
-            <a href="index.html" class="logo">SaaSifyCalc</a>
-            <div class="nav-links">
-                <a href="index.html">All Calculators</a>
-            </div>
-        </nav>
+<body class="bg-background text-textMain font-mono antialiased min-h-screen flex flex-col selection:bg-primary selection:text-white">
 
-        <header class="hero" style="margin-bottom: 2rem; padding: 2rem 0;">
-            <h1 style="font-size: 2.5rem;">Privacy Policy</h1>
-            <p>Last updated: July 2026</p>
+    <nav class="bg-surface border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 text-3xl font-black font-serif text-textMain hover:text-primary transition-colors">
+                SaaSifyCalc.
+            </a>
+            <div class="hidden md:flex gap-8 font-bold text-sm uppercase tracking-wider">
+                <a href="index.html" class="text-textMuted hover:text-textMain transition-colors">Calculators</a>
+            </div>
+            <button class="md:hidden text-textMain">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-4xl mx-auto px-4 py-16 w-full">
+        <header class="mb-12">
+            <a href="index.html" class="inline-flex items-center gap-2 text-textMuted hover:text-textMain transition-colors mb-8 font-bold text-sm uppercase tracking-widest">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Back to Tools
+            </a>
+            <h1 class="text-5xl md:text-6xl font-black font-serif text-textMain mb-4 tracking-tight">Privacy Policy</h1>
+            <p class="text-lg text-textMuted font-bold border-l-4 border-primary pl-4">Last updated: July 2026</p>
         </header>
 
-        <article class="seo-content" style="margin-top: 0; padding-top: 0; border: none;">
-            <h2>1. Information We Collect</h2>
-            <p>SaaSifyCalc is a completely static utility website. We do not require you to create an account, and we do not store the financial data or metrics you input into our calculators. All calculations are performed instantly in your browser (locally on your device).</p>
-
-            <h2>2. Cookies and Advertising</h2>
-            <p>We use third-party advertising companies (such as Google AdSense) to serve ads when you visit our website. These companies may use cookies to serve ads based on your prior visits to our website or other websites. You can opt out of personalized advertising by visiting Google's Ads Settings.</p>
-
-            <h2>3. Log Files</h2>
-            <p>Like most standard web site servers, we use log files. This includes internet protocol (IP) addresses, browser type, internet service provider (ISP), referring/exit pages, platform type, date/time stamp, and number of clicks to analyze trends, administer the site, track user's movement in the aggregate, and gather broad demographic information for aggregate use.</p>
-
-            <h2>4. Contact Us</h2>
-            <p>If you have any questions about this Privacy Policy, please contact us at privacy@saasifycalc.com.</p>
+        <article class="bg-surface border-2 border-black p-8 md:p-12 shadow-hard mb-16">
+            <h2 class="text-2xl font-bold font-serif text-textMain mb-4">1. Information We Collect</h2>
+            <p class="text-textMuted font-bold mb-8 leading-relaxed">SaaSifyCalc is a completely static utility website. We do not require you to create an account, and we do not store the financial data or metrics you input into our calculators. All calculations are performed instantly in your browser (locally on your device).</p>
+            
+            <h2 class="text-2xl font-bold font-serif text-textMain mb-4 border-t-2 border-black pt-6">2. Cookies and Advertising</h2>
+            <p class="text-textMuted font-bold mb-8 leading-relaxed">We use third-party advertising companies (such as Google AdSense) to serve ads when you visit our website. These companies may use cookies to serve ads based on your prior visits to our website or other websites. You can opt out of personalized advertising by visiting Google's Ads Settings.</p>
+            
+            <h2 class="text-2xl font-bold font-serif text-textMain mb-4 border-t-2 border-black pt-6">3. Log Files</h2>
+            <p class="text-textMuted font-bold mb-8 leading-relaxed">Like most standard web site servers, we use log files. This includes internet protocol (IP) addresses, browser type, internet service provider (ISP), referring/exit pages, platform type, date/time stamp, and number of clicks to analyze trends, administer the site, track user's movement in the aggregate, and gather broad demographic information for aggregate use.</p>
+            
+            <h2 class="text-2xl font-bold font-serif text-textMain mb-4 border-t-2 border-black pt-6">4. Contact Us</h2>
+            <p class="text-textMuted font-bold leading-relaxed">If you have any questions about this Privacy Policy, please contact us at <a href="https://github.com/Synthetic-Sage/saasify-calc/issues" class="text-primary hover:underline">our GitHub issues page</a>.</p>
         </article>
+    </main>
 
-        <footer>
-            <p>&copy; 2026 SaaSifyCalc. All rights reserved.</p>
-        </footer>
-    </div>
+    <footer class="bg-surface border-t-2 border-black mt-auto py-16">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-textMain font-black font-serif mb-6 text-3xl">SaaSifyCalc.</p>
+            <div class="flex justify-center gap-8 text-sm font-bold uppercase tracking-widest text-textMuted">
+                <a href="privacy.html" class="hover:text-textMain transition-colors">Privacy Policy</a>
+                <a href="https://github.com/Synthetic-Sage/saasify-calc/issues" target="_blank" class="hover:text-textMain transition-colors">Contact</a>
+            </div>
+            <p class="mt-10 text-sm font-bold text-textMuted/50">&copy; 2026 SaaSifyCalc.</p>
+        </div>
+    </footer>
 </body>
 </html>

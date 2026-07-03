@@ -1,156 +1,147 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SaaS Subscription Cost Tracker | Calculate Software Bloat</title>
     <meta name="description" content="Calculate your organization's total SaaS expenditure and estimate how much money is being wasted on unused software seats (SaaS bloat).">
     
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebApplication",
-          "name": "SaaS Subscription Tracker",
-          "url": "https://saasifycalc.com/subscription-tracker.html",
-          "applicationCategory": "BusinessApplication"
-        },
-        {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "What is SaaS bloat?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "SaaS bloat refers to the wasted expenditure on software subscriptions that are either underutilized, entirely unused by employees, or redundant."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How much money do companies waste on SaaS?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Industry reports estimate that the average company wastes up to 30% of its SaaS budget on unused or abandoned licenses."
-              }
-            }
-          ]
-        }
-      ]
-    }
-    </script>
-
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        primary: '#a855f7', // Purple
-                        secondary: '#d946ef', // Fuchsia
-                        surface: '#1e293b', 
-                        background: '#0f172a', 
-                        textMain: '#f8fafc',
-                        textMuted: '#94a3b8'
+                        primary: '#FF5500', // Safety Orange
+                        surface: '#FFFFFF', // Pure White
+                        background: '#F4F1EA', // Parchment
+                        textMain: '#09090B', // Pure Black
+                        textMuted: '#52525B' // Dark Gray
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        mono: ['"Space Mono"', 'monospace'],
+                    },
+                    boxShadow: {
+                        'hard': '6px 6px 0px 0px rgba(9, 9, 11, 1)',
+                        'hard-hover': '2px 2px 0px 0px rgba(9, 9, 11, 1)'
                     }
                 }
             }
         }
     </script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+        
         .fade-in { animation: fadeIn 0.5s ease-in-out forwards; opacity: 0; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .glass-panel {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
         }
     </style>
 </head>
-<body class="bg-background text-textMain font-sans antialiased">
+<body class="bg-background text-textMain font-mono antialiased min-h-screen flex flex-col selection:bg-primary selection:text-white">
 
-    <nav class="bg-surface/50 backdrop-blur-md border-b border-slate-700/50 shadow-lg sticky top-0 z-50">
+    <!-- Nav -->
+    <nav class="bg-surface border-b-2 border-black sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-2 text-2xl font-extrabold text-white hover:opacity-80 transition-opacity">
-                <span class="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">SaaSifyCalc</span>
+            <a href="index.html" class="flex items-center gap-2 text-3xl font-black font-serif text-textMain hover:text-primary transition-colors">
+                SaaSifyCalc.
             </a>
-            <div class="hidden md:flex gap-8 font-semibold text-textMuted text-sm">
-                <a href="index.html" class="hover:text-primary transition-colors">Calculators</a>
+            <div class="hidden md:flex gap-8 font-bold text-sm uppercase tracking-wider">
+                <a href="index.html" class="text-textMuted hover:text-textMain transition-colors">Calculators</a>
             </div>
+            <button class="md:hidden text-textMain">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
         </div>
     </nav>
 
-    <main class="max-w-5xl mx-auto px-4 py-12">
-        <header class="text-center mb-12 relative">
-            <h1 class="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">SaaS Cost Tracker</h1>
-            <p class="text-lg text-textMuted max-w-2xl mx-auto">Calculate your true organizational SaaS bloat. Enter average seat costs to see your annual expenditure.</p>
+    <!-- Main -->
+    <main class="flex-grow max-w-5xl mx-auto px-4 py-12 w-full">
+        <header class="mb-12">
+            <a href="index.html" class="inline-flex items-center gap-2 text-textMuted hover:text-textMain transition-colors mb-8 font-bold text-sm uppercase tracking-widest">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Back to Tools
+            </a>
+            <h1 class="text-5xl md:text-6xl font-black font-serif text-textMain mb-6 tracking-tight leading-tight">SaaS Cost Tracker</h1>
+            <p class="text-lg md:text-xl text-textMuted max-w-2xl leading-relaxed font-bold border-l-4 border-black pl-4">Calculate your true organizational SaaS bloat. Enter average seat costs to see your annual expenditure.</p>
         </header>
 
-        <section class="glass-panel rounded-3xl shadow-2xl overflow-hidden mb-16">
-            <div class="grid grid-cols-1 md:grid-cols-12">
+        <section class="bg-surface border-2 border-black shadow-hard mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-12 divide-y-2 md:divide-y-0 md:divide-x-2 divide-black">
                 
-                <div class="p-8 md:col-span-5 bg-slate-800/50 border-r border-slate-700/50">
-                    <form onsubmit="event.preventDefault(); handleCalculate();" class="space-y-6">
-                        
+                <!-- Inputs -->
+                <div class="p-8 md:col-span-5 bg-background/50">
+                    <form onsubmit="event.preventDefault(); handleCalculate();" class="space-y-8">
                         <div>
-                            <label class="block text-sm font-semibold text-slate-300 mb-2">Number of Employees (Seats)</label>
+                            <label class="block text-sm font-bold uppercase tracking-wider text-textMain mb-2">Number of Employees</label>
                             <div class="relative flex items-center group">
                                 <input type="number" id="seats" required min="1" placeholder="e.g. 50" 
-                                    class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-600 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all duration-300 text-white">
+                                    class="w-full px-4 py-3 bg-surface border-2 border-black focus:ring-0 focus:border-primary outline-none transition-all text-textMain placeholder-textMuted/50 font-bold">
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-sm font-semibold text-slate-300 mb-2">Avg SaaS Tools per Employee</label>
+                            <label class="block text-sm font-bold uppercase tracking-wider text-textMain mb-2">Avg SaaS Tools per Emp</label>
                             <div class="relative flex items-center group">
                                 <input type="number" id="tools" required min="1" placeholder="e.g. 8" 
-                                    class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-600 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all duration-300 text-white">
+                                    class="w-full px-4 py-3 bg-surface border-2 border-black focus:ring-0 focus:border-primary outline-none transition-all text-textMain placeholder-textMuted/50 font-bold">
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-sm font-semibold text-slate-300 mb-2">Avg Monthly Cost per Tool/Seat</label>
+                            <label class="block text-sm font-bold uppercase tracking-wider text-textMain mb-2">Avg Monthly Cost/Tool</label>
                             <div class="relative flex items-center group">
-                                <span class="absolute left-4 text-slate-500 font-bold">$</span>
+                                <span class="absolute left-4 text-textMuted font-bold border-r-2 border-black pr-2">$</span>
                                 <input type="number" id="cost" required min="1" placeholder="e.g. 25" 
-                                    class="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-900 border border-slate-600 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all duration-300 text-white">
+                                    class="w-full pl-14 pr-4 py-3 bg-surface border-2 border-black focus:ring-0 focus:border-primary outline-none transition-all text-textMain placeholder-textMuted/50 font-bold">
                             </div>
                         </div>
 
-                        <button type="submit" id="calcBtn" class="w-full bg-primary hover:bg-fuchsia-500 text-white font-bold text-lg py-4 rounded-xl shadow-lg transition-all duration-300">
+                        <button type="submit" id="calcBtn" class="w-full bg-textMain hover:bg-primary text-surface font-bold text-lg py-4 border-2 border-black transition-colors duration-300 flex justify-center items-center gap-2 mt-4 uppercase tracking-widest shadow-[4px_4px_0px_0px_rgba(9,9,11,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1">
                             <span>Calculate Total Bloat</span>
                         </button>
                     </form>
                 </div>
 
-                <div class="p-8 md:col-span-7 bg-surface/30 relative flex flex-col justify-center items-center min-h-[400px]">
+                <!-- Results -->
+                <div class="p-8 md:col-span-7 bg-surface relative flex flex-col justify-center items-center min-h-[500px]">
                     
-                    <div id="emptyState" class="text-center text-slate-500 flex flex-col items-center gap-4">
-                        <svg class="w-16 h-16 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                        <p class="text-lg">Input your organization's tool usage.</p>
+                    <div id="emptyState" class="text-center text-textMuted flex flex-col items-center gap-4">
+                        <div class="w-16 h-16 bg-background border-2 border-black flex items-center justify-center">
+                            <svg class="w-8 h-8 text-textMain" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                        </div>
+                        <p class="font-bold text-lg max-w-sm">Input your organization's tool usage to generate your cost breakdown.</p>
                     </div>
 
                     <div id="resultsState" class="hidden w-full h-full flex-col justify-between fade-in">
                         
-                        <div class="text-center mb-8">
-                            <h3 class="text-sm font-bold text-primary uppercase tracking-widest mb-2">Annual SaaS Expenditure</h3>
-                            <div class="text-6xl font-black text-white" id="annualTotal">$0</div>
+                        <div class="text-center mb-8 bg-background border-2 border-black p-6 shadow-[4px_4px_0px_0px_rgba(9,9,11,1)]">
+                            <h3 class="text-sm font-bold text-textMain uppercase tracking-widest mb-4">Annual SaaS Expenditure</h3>
+                            <div class="text-5xl md:text-7xl font-black font-serif text-textMain" id="annualTotal">$0</div>
                         </div>
 
-                        <div class="relative w-48 h-48 mx-auto mb-6">
+                        <div class="relative w-48 h-48 mx-auto mb-8">
                             <canvas id="bloatChart"></canvas>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-4 text-center border-t border-slate-700/50 pt-6">
-                            <div class="bg-slate-800/50 rounded-xl p-4">
-                                <span class="block text-[10px] font-semibold text-slate-400 uppercase mb-1">Monthly Burn Rate</span>
-                                <div class="text-xl font-bold text-white" id="monthlyTotal">$0</div>
+                        <div class="grid grid-cols-2 gap-0 border-2 border-black text-center divide-x-2 divide-black">
+                            <div class="bg-surface p-4">
+                                <span class="block text-[10px] font-bold text-textMuted uppercase tracking-widest mb-1">Monthly Burn Rate</span>
+                                <div class="text-xl font-black text-textMain" id="monthlyTotal">$0</div>
                             </div>
-                            <div class="bg-slate-800/50 rounded-xl p-4">
-                                <span class="block text-[10px] font-semibold text-slate-400 uppercase mb-1">Cost Per Emp/Year</span>
-                                <div class="text-xl font-bold text-white" id="perEmpYear">$0</div>
+                            <div class="bg-background p-4">
+                                <span class="block text-[10px] font-bold text-textMain uppercase tracking-widest mb-1">Cost Per Emp/Year</span>
+                                <div class="text-xl font-black text-primary" id="perEmpYear">$0</div>
                             </div>
                         </div>
 
@@ -158,52 +149,68 @@
                 </div>
             </div>
         </section>
-        </section>
 
-        <article class="prose prose-invert max-w-none glass-panel p-8 md:p-12 rounded-3xl mb-16">
-            <h2 class="text-3xl font-bold text-white mb-6">The Hidden Cost of SaaS Sprawl</h2>
-            <p class="text-slate-300 text-lg mb-6 leading-relaxed">The shift to cloud computing revolutionized the way companies operate, moving software procurement from painful, multi-year, on-premise contracts to frictionless monthly subscriptions. However, this lack of friction has created a new enterprise epidemic: SaaS Sprawl.</p>
+        <!-- Editorial Content -->
+        <article class="bg-surface border-2 border-black p-8 md:p-12 shadow-hard mb-16 max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-black font-serif text-textMain mb-6">The Hidden Cost of SaaS Sprawl</h2>
+            <p class="text-textMuted font-bold mb-8 leading-relaxed text-lg border-l-4 border-black pl-4">The shift to cloud computing revolutionized the way companies operate, moving software procurement from painful, multi-year, on-premise contracts to frictionless monthly subscriptions. However, this lack of friction has created a new enterprise epidemic: SaaS Sprawl.</p>
             
-            <h3 class="text-2xl font-bold text-primary mt-8 mb-4">What is SaaS Sprawl?</h3>
-            <p class="text-slate-300 mb-4">SaaS Sprawl occurs when different departments, teams, or even individual employees purchase software subscriptions independently, without central IT oversight. The result is a fragmented technology stack filled with redundant applications and forgotten subscriptions.</p>
-            <ul class="text-slate-300 space-y-3 mb-6 list-disc pl-6">
-                <li><strong>Redundancy:</strong> The Marketing team buys Asana, while Engineering uses Jira, and Operations uses Trello. You are paying three different companies to solve the same project management problem.</li>
-                <li><strong>Orphaned Accounts:</strong> When an employee leaves the company, their email is deactivated, but their $50/month Salesforce seat is never unassigned.</li>
-                <li><strong>Shadow IT:</strong> Employees bypass procurement using company credit cards, creating major security vulnerabilities and unmapped costs.</li>
+            <h3 class="text-2xl font-bold font-serif text-textMain mt-8 mb-4">What is SaaS Sprawl?</h3>
+            <p class="text-textMuted mb-4">SaaS Sprawl occurs when different departments, teams, or even individual employees purchase software subscriptions independently, without central IT oversight. The result is a fragmented technology stack filled with redundant applications and forgotten subscriptions.</p>
+            <ul class="text-textMain font-bold space-y-4 mb-8">
+                <li class="flex items-start gap-3"><span class="text-primary mt-1">▶</span> <div><strong>Redundancy:</strong> The Marketing team buys Asana, while Engineering uses Jira, and Operations uses Trello. You are paying three different companies to solve the same project management problem.</div></li>
+                <li class="flex items-start gap-3"><span class="text-primary mt-1">▶</span> <div><strong>Orphaned Accounts:</strong> When an employee leaves the company, their email is deactivated, but their $50/month Salesforce seat is never unassigned.</div></li>
+                <li class="flex items-start gap-3"><span class="text-primary mt-1">▶</span> <div><strong>Shadow IT:</strong> Employees bypass procurement using company credit cards, creating major security vulnerabilities and unmapped costs.</div></li>
             </ul>
 
-            <h3 class="text-2xl font-bold text-primary mt-8 mb-4">The 30% Waste Rule</h3>
-            <p class="text-slate-300 mb-6">Industry analysts estimate that up to 30% of a company's total SaaS spend is completely wasted on unused licenses. If your organization spends $500,000 annually on software, $150,000 of that is likely evaporating into the cloud without generating any business value.</p>
+            <h3 class="text-2xl font-bold font-serif text-textMain mb-4 border-t-2 border-black pt-6">The 30% Waste Rule</h3>
+            <p class="text-textMuted leading-relaxed">Industry analysts estimate that up to 30% of a company's total SaaS spend is completely wasted on unused licenses. If your organization spends $500,000 annually on software, $150,000 of that is likely evaporating into the cloud without generating any business value.</p>
+            
+            <div class="mt-8 p-4 bg-[#FF5500]/10 border-2 border-primary text-sm font-bold text-textMain">
+                <span class="text-primary uppercase tracking-widest mr-2">Disclaimer:</span> This calculator provides estimations based on user input. Actual TCO may vary based on cloud infrastructure costs, engineering velocity, and technical debt. Not financial advice.
+            </div>
         </article>
 
-        <section class="mb-16">
-            <h2 class="text-3xl font-bold text-center text-white mb-8">Frequently Asked Questions</h2>
-            <div class="max-w-3xl mx-auto space-y-4">
-                <details class="group glass-panel rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
-                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-lg text-white group-open:text-primary transition-colors">
+        <section class="mb-16 max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold font-serif text-center text-textMain mb-8 border-b-2 border-black pb-4">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <details class="group bg-surface border-2 border-black shadow-[4px_4px_0px_0px_rgba(9,9,11,1)] transition-all duration-300 overflow-hidden">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-lg text-textMain group-open:text-primary transition-colors hover:bg-background">
                         <span>How can we prevent SaaS bloat?</span>
                         <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            <svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
                         </span>
                     </summary>
-                    <div class="text-slate-300 p-6 pt-0 border-t border-slate-700/50 leading-relaxed">
+                    <div class="text-textMuted font-bold p-6 pt-0 border-t-2 border-black leading-relaxed">
                         Implement a centralized SaaS management platform (SMP), mandate single sign-on (SSO) for all apps to easily track logins, and conduct quarterly audits of active software licenses.
                     </div>
                 </details>
-                <details class="group glass-panel rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
-                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-lg text-white group-open:text-primary transition-colors">
+                <details class="group bg-surface border-2 border-black shadow-[4px_4px_0px_0px_rgba(9,9,11,1)] transition-all duration-300 overflow-hidden">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-lg text-textMain group-open:text-primary transition-colors hover:bg-background">
                         <span>What is considered a normal SaaS budget?</span>
                         <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            <svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
                         </span>
                     </summary>
-                    <div class="text-slate-300 p-6 pt-0 border-t border-slate-700/50 leading-relaxed">
+                    <div class="text-textMuted font-bold p-6 pt-0 border-t-2 border-black leading-relaxed">
                         While it varies by industry, modern technology companies often spend between $2,000 to $4,000 per employee annually on SaaS subscriptions. 
                     </div>
                 </details>
             </div>
         </section>
+
     </main>
+
+    <footer class="bg-surface border-t-2 border-black mt-auto py-16">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-textMain font-black font-serif mb-6 text-3xl">SaaSifyCalc.</p>
+            <div class="flex justify-center gap-8 text-sm font-bold uppercase tracking-widest text-textMuted">
+                <a href="privacy.html" class="hover:text-textMain transition-colors">Privacy Policy</a>
+                <a href="https://github.com/Synthetic-Sage/saasify-calc/issues" target="_blank" class="hover:text-textMain transition-colors">Contact</a>
+            </div>
+            <p class="mt-10 text-sm font-bold text-textMuted/50">&copy; 2026 SaaSifyCalc.</p>
+        </div>
+    </footer>
 
     <script>
         const formatMoney = (num) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(num);
@@ -223,22 +230,48 @@
                     labels: ['Estimated Waste (30%)', 'Utilized Value (70%)'],
                     datasets: [{
                         data: [bloat, utilized],
-                        backgroundColor: ['#ef4444', '#a855f7'],
-                        borderWidth: 0,
-                        hoverOffset: 4
+                        backgroundColor: ['#FF5500', '#09090B'],
+                        borderColor: '#09090B',
+                        borderWidth: 2,
+                        hoverOffset: 0
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    cutout: '60%',
                     plugins: { 
-                        legend: { position: 'bottom', labels: { color: '#94a3b8' } }
+                        legend: { 
+                            position: 'bottom', 
+                            labels: { 
+                                color: '#09090B',
+                                font: { family: "'Space Mono', monospace", weight: 'bold' },
+                                boxWidth: 12,
+                                boxHeight: 12,
+                                padding: 20
+                            } 
+                        }
                     }
                 }
             });
         };
 
         const handleCalculate = () => {
+            const calcBtn = document.getElementById('calcBtn');
+            const spanText = calcBtn.querySelector('span');
+            spanText.innerText = "CALCULATING...";
+            calcBtn.classList.add('bg-primary');
+            calcBtn.classList.remove('bg-textMain');
+            
+            setTimeout(() => {
+                executeMath();
+                spanText.innerText = "CALCULATE TOTAL BLOAT";
+                calcBtn.classList.remove('bg-primary');
+                calcBtn.classList.add('bg-textMain');
+            }, 400);
+        };
+
+        const executeMath = () => {
             const seats = parseFloat(document.getElementById('seats').value);
             const tools = parseFloat(document.getElementById('tools').value);
             const cost = parseFloat(document.getElementById('cost').value);
@@ -252,6 +285,11 @@
             document.getElementById('emptyState').classList.add('hidden');
             document.getElementById('resultsState').classList.remove('hidden');
             
+            const resultsState = document.getElementById('resultsState');
+            resultsState.classList.remove('fade-in');
+            void resultsState.offsetWidth;
+            resultsState.classList.add('fade-in');
+
             document.getElementById('annualTotal').innerText = formatMoney(annualBurn);
             document.getElementById('monthlyTotal').innerText = formatMoney(monthlyBurn);
             document.getElementById('perEmpYear').innerText = formatMoney(perEmployeeYear);
