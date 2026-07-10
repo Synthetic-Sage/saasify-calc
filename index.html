@@ -5,7 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SaaSifyCalc | B2B Software & Cloud Calculators</title>
     <meta name="description" content="Premium B2B financial calculators for software ROI, cloud computing costs, and subscription tracking.">
+    <meta name="keywords" content="SaaS ROI Calculator, Build vs Buy Calculator, Cloud TCO Calculator, B2B SaaS Metrics, Software Cost Tracking, SaaSifyCalc">
     <meta name="google-site-verification" content="cYEGz4VEddhjiC7JheW4BjuhlZDbfq6EEmkmXTUiJyA" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "SaaSifyCalc",
+      "url": "https://saasifycalc.local/",
+      "description": "B2B Software & Cloud Calculators for ROI and TCO."
+    }
+    </script>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -58,10 +68,11 @@
         <header class="mb-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center border-b-2 border-black pb-12">
             <!-- Left Column: Text & CTA -->
             <div class="flex flex-col items-start space-y-8">
-                <h1 class="text-6xl md:text-8xl font-black font-serif text-textMain leading-[1.1] tracking-tight">
+                <h1 class="sr-only">SaaSifyCalc - B2B SaaS ROI, Build vs Buy, and Cloud TCO Calculators</h1>
+                <div class="text-6xl md:text-8xl font-black font-serif text-textMain leading-[1.1] tracking-tight" aria-hidden="true">
                     Measure Your<br>
                     <span class="italic text-primary">SaaS ROI</span><br>Instantly.
-                </h1>
+                </div>
                 <p class="text-xl md:text-2xl text-textMuted leading-relaxed font-bold border-l-4 border-primary pl-6">
                     Data-driven decision making for modern B2B teams. Calculate software ROI, cloud migration costs, and subscription bloat.
                 </p>
@@ -160,6 +171,15 @@
                 </div>
             </a>
         </div>
+        
+        <!-- SEO Content Block -->
+        <section class="mt-20 border-2 border-black bg-surface p-8 shadow-hard relative z-20">
+            <h2 class="text-2xl font-bold font-serif mb-4">Why Use SaaSifyCalc for B2B Software Metrics?</h2>
+            <div class="text-textMuted text-sm space-y-4 leading-relaxed font-medium">
+                <p>SaaSifyCalc provides enterprise-grade <strong>B2B financial calculators</strong> designed for modern engineering and finance teams. Before purchasing a new enterprise tool, use our <strong>SaaS ROI Calculator</strong> to accurately quantify the return on investment based on engineering hours saved and direct cost reductions.</p>
+                <p>Our comprehensive suite also features a robust <strong>Build vs Buy Calculator</strong> to help CTOs make informed architectural decisions, and a <strong>Cloud TCO Calculator</strong> (Total Cost of Ownership) to compare on-premise server maintenance against AWS/Azure migrations. Calculate your true software costs instantly.</p>
+            </div>
+        </section>
     </main>
 
         <footer class="border-t border-black bg-[#F9F7F1] mt-auto relative z-50">
